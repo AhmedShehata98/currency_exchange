@@ -1,0 +1,200 @@
+/* Start Global Rolls */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+*,
+*::before,*::after
+{
+    font-size: 16px;
+    box-sizing: border-box;
+    font-family: 'Noto Sans Display', sans-serif;
+}
+
+:root{
+    --main-tx-clr:#fff;
+    --alt-tx-clr:#000;
+    --main-bg-clr:#F78812;
+    --alt-bg-clr:#e6e6e6;
+    --overlay-one:#f6f6f6;
+    --overlay-two:#E02401;
+    --overlay-three:#51050F;
+    --static-border-radius:50px;
+}
+.flex-row-axsis{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.flex-column-axsis{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/*End Global Rolls */
+/* Start Media Queries */
+@media (max-width:567px) {
+    .container{
+        width: calc(100% - 30px);
+        padding: 0 10px;
+        margin: auto;
+    }
+}
+@media (min-width:567px) {
+    .container{
+        width: calc(100% - 30px);
+        padding: 0 10px;
+        margin: 0 10px;
+    }
+}
+@media (min-width:768px) {
+    .container{
+        width: calc(100% - 70px);
+        padding: 0 10px;
+        margin: 0 40px;
+    }
+}
+@media (min-width:992px) {
+    .container{
+        width: calc(100% - 70px);
+        padding: 0 10px;
+        margin: 0 40px;
+    }
+}
+@media (min-width:1200px) {
+    .container{
+        width: calc(100% - 70px);
+        padding: 0 10px;
+        margin: 0 40px;
+    }
+}
+/* End Media Queries */
+body{
+    background:linear-gradient(190deg ,#252525,#000000 ,#202020 )
+}
+header {
+    position: sticky;
+    z-index: 100;
+    top: 0;
+    height: 65px;
+}
+header .container{
+    height: 65px;
+    justify-content: space-around;
+    color: var(--main-tx-clr);
+}
+header .container .logo{
+    width: 300px;
+    height: 65px;
+    gap: 15px;
+}
+header .container .logo >h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+}
+header .container .logo .logoImage {
+    width: 15%;
+}
+header .container .logo .logoImage img{
+    max-width: 100%;
+    object-fit: cover;
+}
+header .container nav.links{
+    list-style: none;
+    justify-content: space-evenly;
+    gap: 40px;
+}
+header .container nav.links > li > a{
+    display: inline-block;
+    padding: 8px 15px;
+    font-weight: bold;
+    color: var(--main-tx-clr);
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 50px;
+    transition: color 0.3s ease-out ,background 0.3s ease-in;
+}
+header .container nav.links > li > a:hover{
+    color: var(--alt-tx-clr);
+    background: var(--main-bg-clr);
+
+}
+main.home{
+    min-height: calc(100vh - 65px);
+}
+main.home .container {
+    position: relative;
+    min-height: calc(100vh - 65px);
+}
+main.home .container .overlayColorBase{
+    position: relative;
+}
+main.home .container .overlayColorBase .overlayColorOne ,
+main.home .container .overlayColorBase .overlayColortwo ,
+main.home .container .overlayColorBase .overlayColorthree
+{
+    position: absolute;
+    right: 25px;
+    height: calc(100vh - 70px);
+    width: 180px;
+    background-color: var(--overlay-three);
+    transform: skewX(-8.5deg);
+    box-shadow: 0 0 0;
+}
+main.home .container .overlayColorBase .overlayColortwo{
+    right: 150px;
+    background: var(--overlay-two);
+    box-shadow: 0 10px 15px 2px var(--overlay-two);
+}
+main.home .container .overlayColorBase .overlayColorthree{
+    right: 280px;
+    background: var(--overlay-one);
+    box-shadow: 5px 0 15px 2px var(--overlay-one);
+
+}
+main.home .container .main-bg-img{
+    position: absolute;
+    left: 70%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 600px;
+    height: 600px;
+}
+main.home .container .main-bg-img img{
+    width: 100%;
+    object-fit: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    animation: UP-Down 2s infinite alternate ease-in-out ;
+}
+main.home .container .description{
+    align-items: flex-start;
+    color: var(--main-tx-clr);
+    height: calc(100vh - 100px );
+    width: 40%;
+}
+main.home .container .description .descText{
+    font-size: 1.8rem;
+    line-height: 40px;
+    text-transform: capitalize;
+}
+main.home .container .description .descText > span{
+    color: var(--main-bg-clr);
+    font-size: 1.5rem;
+}
+main.home .container .description > p{
+    color: #646363b0;
+    font-weight: 600;
+}
+main.home .container .description .exchange-now-section{
+    padding: 15px 25px;
+    border: 2px solid var(--main-bg-clr);
+    background: var(--main-bg-clr);
+    color: var(--main-tx-clr);
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    border-radius: var(--static-border-radius);
+}

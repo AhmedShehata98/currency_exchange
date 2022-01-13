@@ -1,0 +1,8 @@
+@keyframes UP-Down {
+    from{
+        transform: translateY(-18px);
+    }
+    to{
+        transform: translateY(18px);
+    }
+}
