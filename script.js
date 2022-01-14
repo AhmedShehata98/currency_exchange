@@ -25,7 +25,7 @@ async function GET_API_DATA(){
     const baseAPI = 'http://api.currencylayer.com/'
     const apiKEY  = atob('MWE4ZjZlYzllY2I5ZmE1MTgyMTBhZjI5MDkyM2RmYWU=');
 
-    let response = await fetch(`${baseAPI}live?access_key=${apiKEY}&currencies=${currencyName}&format=1`);
+    let response = await fetch(`${baseAPI}live?access_key=${apiKEY}&format=1`);
     let Data = await response.json()
     console.log(Data);
 }
@@ -44,4 +44,5 @@ function DATE_FORMAT(date){
         return `${day}-${month}-${year}`
 }
 DATE_FORMAT(new Date())
+GET_API_DATA()
 // http://api.currencylayer.com/live?access_key=1a8f6ec9ecb9fa518210af290923dfae&currencies=EGP&format=1
