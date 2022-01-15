@@ -388,7 +388,7 @@ main.home .container .description .exchange-now-section:hover{
 }
 .liveRate .currency-table{
     width: -webkit-fill-available;
-    
+    border-color: #00BD56;
 }
 .live-Rate-table .currency-table tr th{
     padding: 15px;

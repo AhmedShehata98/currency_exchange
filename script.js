@@ -61,23 +61,23 @@ async function GET_API_DATA_FULL_CURRENCY_NAME(){
     // Get by currency name
     const baseAPI = 'http://api.currencylayer.com/'
     const apiKEY  = atob('MWE4ZjZlYzllY2I5ZmE1MTgyMTBhZjI5MDkyM2RmYWU=');
-    const promise = new Promise((resolve,reject=>{
-        fetch(`${baseAPI}list?access_key=${apiKEY}&format=1`);
-    }))
-    promise.then{}
+    
+    let response = await fetch(`${baseAPI}list?access_key=${apiKEY}&format=1`);
+    let data = await response.json()
+    return Object.values(data.currencies)
 }
 
-console.log(GET_API_DATA_FULL_CURRENCY_NAME());
-async function GET_API_DATA(){
-    // Get all currencies
+async function GET_API_DATA_LIVE_RATE(){
+    // Get all currencies Rate
     const baseAPI = 'http://api.currencylayer.com/'
     const apiKEY  = atob('MWE4ZjZlYzllY2I5ZmE1MTgyMTBhZjI5MDkyM2RmYWU=');
 
     let response = await fetch(`${baseAPI}live?access_key=${apiKEY}&format=1`);
     let Data = await response.json()
-
-    INNER_LIVE_RATE(Data);
+    return Object.values(Data.quotes)
+    
 }
+
 function DATE_FORMAT(date){
     let day,month,year;
         day = date.getDay();
@@ -94,12 +94,14 @@ function DATE_FORMAT(date){
 }
 
 
-function INNER_LIVE_RATE(data){
 
-    let retrivedDataLength = Object.entries(data.quotes).length ;
-    let retrivedDataCurrencyRate = Object.values(data.quotes) ;
+async function INNER_LIVE_RATE(data){
 
-    for(var i = 0; i < retrivedDataLength  ; i++ ){
+    
+    let retrivedDataCurrencyName = await GET_API_DATA_FULL_CURRENCY_NAME();
+    let retrivedDataCurrencyRate = await GET_API_DATA_LIVE_RATE();
+
+    for(var i = 0; i < retrivedDataCurrencyRate.length  ; i++ ){
 
         let tableRow = document.createElement('tr');
         let tableDataCurrencyLogo = document.createElement('td');
@@ -111,13 +113,13 @@ function INNER_LIVE_RATE(data){
         tableDataCurrencyLogo.appendChild(dataimage);
         tableRow.appendChild(tableDatacurrencyName) ;
         tableRow.appendChild(tableDatacurrencyRate) ;
-        // tableDatacurrencyName.appendChild(document.createTextNode(fullCurrencyName[i]))
+        tableDatacurrencyName.appendChild(document.createTextNode(retrivedDataCurrencyName[i]))
         tableDatacurrencyRate.appendChild(document.createTextNode(retrivedDataCurrencyRate[i]))
 
 
-        tableDataCurrencyLogo.className = 'currencyLogo'
+        tableDataCurrencyLogo.className = 'currencyLogo flex-row-axsis'
         tableDatacurrencyName.className = 'currencyName'
-        tableDatacurrencyRate.className = 'currencyRate'
+        tableDatacurrencyRate.className = 'currencyRate '
         dataimage.className = 'Logo';
         dataimage.src= 'assists/img/money.png'
         mainTable.appendChild(tableRow)
@@ -127,5 +129,6 @@ function INNER_LIVE_RATE(data){
 // calling functions
 // 
 DATE_FORMAT(new Date())
-GET_API_DATA()
+GET_API_DATA_LIVE_RATE()
+INNER_LIVE_RATE()
 // http://api.currencylayer.com/live?access_key=1a8f6ec9ecb9fa518210af290923dfae&currencies=EGP&format=1
