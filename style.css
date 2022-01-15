@@ -77,6 +77,22 @@ header {
     top: 0;
     height: 65px;
 }
+header.active{
+    margin: 0 10px;
+    background: #fff;
+    box-shadow: 0 0 15px 0 var(--main-bg-clr);
+    border-radius: var(--static-border-radius);
+    top: 1% !important;
+    transition: 0.5s ease-out;
+}
+header.active .logo >h1{
+    color: var(--alt-tx-clr);
+    transition: 0.5s ease-out;
+}
+header.active nav.links > li > a{
+    color: var(--alt-tx-clr) !important;
+    transition: 0.5s ease-out;
+}
 header .container{
     position: relative;
     height: 65px;
@@ -296,15 +312,23 @@ main.home .container .description > p{
     }
 }
 main.home .container .description .exchange-now-section{
-    padding: 15px 25px;
+    gap: 15px;
+    height: 58px;
+    padding: 10px 20px;
     margin-top: 65px;
-    border: 2px solid var(--main-bg-clr);
+    border: none;
     background: var(--main-bg-clr);
     color: var(--main-tx-clr);
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     text-transform: uppercase;
     border-radius: var(--static-border-radius);
     cursor: pointer;
+    transition:background 0.3s ease-out;
+    
+}
+main.home .container .description .exchange-now-section:hover{
+    background: #3C4245;
+    transition: background 0.3s ease-in;
 }
 .btnLogo{
     vertical-align: middle;
@@ -383,86 +407,177 @@ main.home .container .description .exchange-now-section{
 }
 .exchange-currency .container{
     justify-content: space-around;
-    flex-wrap: wrap;
+    min-height: 65vh;
+    gap: 2rem;
+}
+@media (max-width:992px) {
+    .exchange-currency .container{
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
 }
 .exchange-currency .container .exchange-panel{
-    width: 370px;
-    height: 470px;
+    padding: 80px 75px;
     background: linear-gradient(45deg , #25252598 ,#51050f56);
     backdrop-filter: blur(15px);
+    border: 2px solid #3C4245;
+    border-radius: 8px;
+}
+@media (max-width:992px) {
+    .exchange-currency .container .exchange-panel{
+        padding: 40px 40%;
+        margin-top: 80px;
+    }
+    
 }
 .exchange-currency .container .exchange-panel img{
     max-width: 100%;
     object-fit: cover;
 }
-.exchange-currency .container .calcu-currency {
+.container .calculator-panel{
+    width: 50%;
+    padding: 25px;
     display: flex;
+    justify-content: center;
     flex-direction: column;
-    width: 60%;
-    justify-content: space-around;
-    align-items: center;
-    height: 65vh;
+    gap: 0.5rem;
+    background: linear-gradient(45deg , #25252598 ,#51050f56);
+    border: 2px solid #3C4245;
 }
-.exchange-currency .container .calcu-currency .currency-input{
-    width: 100%;
-    flex-wrap: wrap;
+@media (max-width:992px) {
+    .container .calculator-panel{
+        width: 100%;
+    }
 }
-.exchange-currency .container .calcu-currency .currency-input #currencyInput{
-    padding: 8px 10px;
-    width: 65%;
-    border: 3px solid var(--main-bg-clr);
-    background: #e4e4e4;
-    border-radius: var(--static-border-radius);
+.calculator-panel .from-currency,
+.calculator-panel .to-currency
+{
+    gap: 1rem;
 }
-.exchange-currency .container .calcu-currency .currency-input #currencyInput:focus{
-    outline: none;
-    background: #fff;
-}
-.exchange-currency .container .calcu-currency .currency-input > label{
+.calculator-panel .from-currency >label{
+    color: var(--alt-bg-clr);
+    text-transform: capitalize;
+    align-self: flex-start;
+    padding: 12px 2px;
     font-weight: bold;
-    color: var(--main-tx-clr);
-    padding-right: 15px;
 }
-.exchange-currency .container .calcu-currency .currency-input > button {
-    width: 30%;
+.calculator-panel .from-currency #amountInput{
+    border-radius: 5px;
+    height: 120px;
+    width: 100%;
+    padding: 15px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    background-color: #2C272E;
+    color: var(--alt-bg-clr);
+    border: none;
+    box-shadow: 0 0 8px var(--main-bg-clr);
+    border-radius: 10px;
+}
+.calculator-panel .from-currency #currencyListFrom,
+.calculator-panel .to-currency #currencyListTo
+{
+    
+    width: 100%;
+    padding: 10px 8px;
+    color: var(--main-tx-clr);
+    background-color: #072227;
+    box-shadow: 0 0 8px 0 var(--main-bg-clr);
+    border-radius: 10px;
+}
+
+.calculator-panel .convertBTN{
+    gap: 15px;
+    height: 48px;
     padding: 8px 15px;
     border: none;
-    margin-top: 35px;
-    background: var(--main-bg-clr);
-    border-radius: var(--static-border-radius);
+    background-color: var(--main-bg-clr);
+    color: var(--alt-bg-clr);
+    font-weight: 500;
     font-size: 1.2rem;
-    gap: 15px;
-    color: var(--main-tx-clr);
-    font-weight: bold;
-    outline: none;
     cursor: pointer;
+    border-radius: var(--static-border-radius);
+    transition: background 0.3s ease-out;
 }
-.exchange-currency .container .calcu-currency .currency-input > button:hover{
-    background: transparent;
-    border: 4px solid var(--main-bg-clr);
+.calculator-panel .convertBTN:hover{
+    background: #3C4245;
+    transition: background 0.3s ease-in;
+
 }
-.exchange-currency .container .calcu-currency .currency-input > button .exchangeLogo{
-    font-size: 2rem;
-    color: var(--main-tx-clr);
+.calculator-panel .convertBTN >:first-child{
+    font-size: 1.5rem;
+    transform: rotate(90deg);
 }
-.exchange-currency .container .calcu-currency .displayResult{
-    background: #545454c9;
-    width: -webkit-fill-available;
-    height: 35%;
-    border-radius: 15px;
-    margin: 0 20px;
+.calculator-panel .to-currency >span.showResult{
+    border-radius: 5px;
+    display: inline-block;
+    height: 150px;
+    width: 100%;
     padding: 15px;
-    justify-content: flex-start;
-    align-items: flex-start;
-    box-shadow: 0 0 7px 0 #00bd56;
-    backdrop-filter: blur(15px);
+    background-color: #2C272E;
+    border: none;
+    box-shadow: 0 0 8px var(--main-bg-clr);
+    border-radius: 10px;
 }
-.exchange-currency .container .calcu-currency .displayResult > label{
-    font-weight: 400;
-    color: var(--main-tx-clr);
-}
-.exchange-currency .container .calcu-currency .displayResult > h3{
-    color: var(--main-bg-clr);
+.calculator-panel .to-currency >span.showResult .covertedValue{
+    font-size: 1.1rem;
+    color: var(--alt-bg-clr);
     font-weight: bold;
-    font-size: 1.2rem;
+    align-self: center;
+
 }
+footer.aboutUS{
+    min-height: 40vh;
+}
+footer.aboutUS .container{
+    justify-content: space-around !important;
+}
+@media (max-width:768px) {
+    footer.aboutUS .container{
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+}
+footer.aboutUS .container .importLinks ,
+footer.aboutUS .container .contactLinks
+{
+    /* background: #959595; */
+}
+footer.aboutUS .container .importLinks >h4 ,
+footer.aboutUS .container .contactMe>h4
+{
+    color: var(--main-tx-clr);
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+footer.aboutUS .container .importLinks .footLinks ,
+footer.aboutUS .container .contactMe .contactMeLinks
+{
+    list-style: none;
+    padding: 0;
+}
+footer.aboutUS .container .importLinks .footLinks > li > a,
+footer.aboutUS .container .contactMe .contactMeLinks >li > a
+{
+    display: inline-block;
+    padding: 8px 0;
+    color: var(--main-tx-clr);
+    text-decoration: none;
+    font-weight: 400;
+    text-transform: capitalize;
+}
+
+footer.aboutUS .container .myphoto{
+    width: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 50px;
+    box-shadow: 0 0 5px 10px var(--main-bg-clr);
+}
+footer.aboutUS .container .myphoto img{
+    max-width: 100%;
+}
+

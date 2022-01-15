@@ -27,7 +27,7 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#currencyRate">Currencies Rates</a></li>
                 <li><a href="#exchange_now">exchange now</a></li>
-                <li><a href="#">About us</a></li>
+                <li><a href="#aboutUS">About us</a></li>
             </nav>
         </div>
     </header>
@@ -47,7 +47,7 @@
                 <p>Hello . I use in this application an API called "currencylayer",
                     and I aspire in this application to make the user experience in converting the price of his
                     currency to the price of any other currency easy and simple, yet beautiful in sight</p>
-                <button class="exchange-now-section">
+                <button class="exchange-now-section flex-row-axsis">
                     <ion-icon class="btnLogo" name="cash"></ion-icon>
                     exchange now
                 </button>
@@ -91,25 +91,67 @@
                     <img src="assists/img/exchange-currency.png" alt="">
                 </div>
             </div>
-            <div class="calcu-currency">
-                <div class="currency-input flex-row-axsis">
-                    <label for="currencyInput">Transfer amount :  </label>
-                    <input type="number" id="currencyInput">
-                    <br>
-                    <button class="flex-row-axsis">
-                        <ion-icon class="exchangeLogo" name="swap"></ion-icon>
-                        exchange
-                    </button>
+            <div class="calculator-panel">
+                <div class="from-currency flex-column-axsis">
+                    <select id="currencyListFrom">
+                        <option value="USD">USD</option>
+                        <option value="EGP">EGP</option>
+                        <option value="AED">AED</option>
+                    </select>
+                    <label for="amountInput">Enter Amount</label>
+                    <input type="number" id="amountInput">
+
                 </div>
-                <div class="displayResult flex-column-axsis">
-                    <label class="CurrencyRate">Currency Rate :</label>
-                    <h3 class="CurrencyRateText">42.150111</h3>
-                    <label class="innerCurrency">Equals :</label>
-                    <h3 class="ExchangedCurrency">12.121011</h3>
+                <button class="convertBTN flex-row-axsis">
+                    <ion-icon name="swap"></ion-icon>
+                    Convert 
+                </button>
+                <div class="to-currency flex-column-axsis">
+                    <select  id="currencyListTo">
+                        <option value="USD">USD</option>
+                        <option value="EGP">EGP</option>
+                        <option value="AED">AED</option>
+                    </select>
+                    <span class="showResult">
+                        <h3 class="covertedValue">15.125002</h3>
+                    </span>
                 </div>
             </div>
         </section>
     </main>
+    <footer class="aboutUS flex-row-axsis" id="aboutUS">
+        <section class="container flex-row-axsis">
+            <div class="importLinks">
+                <h4 >important Links</h4>
+                <ul class="footLinks">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#currencyRate">Currencies Rates</a></li>
+                    <li><a href="#exchange_now">exchange now</a></li>
+                    <li><a href="#aboutUS">About us</a></li>
+                </ul>
+            </div>
+            <div class="contactMe">
+                <h4>Contact Me</h4>
+                <ul class="contactMeLinks">
+                    <li><a href="https://www.facebook.com/MidoEsquire">
+                        <ion-icon name="logo-facebook"></ion-icon>
+                        FB
+                    </a></li>
+                    <li><a href="https://www.linkedin.com/in/ahmed-shehata-b63001225/">
+                        <ion-icon name="logo-linkedin"></ion-icon>
+                        LinkdIN
+                    </a></li>
+                    <li><a href="https://github.com/AhmedShehata98">
+                        <ion-icon name="logo-github"></ion-icon>
+                        GitHub
+                    </a></li>
+                </ul>
+            </div>
+            <div class="myphoto">
+                <img src="assists/img/MyPhoto.jpg" alt="MyPhoto">
+            </div>
+        </section>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
