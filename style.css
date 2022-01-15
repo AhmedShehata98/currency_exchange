@@ -76,12 +76,14 @@ header {
     z-index: 100;
     top: 0;
     height: 65px;
+    transition: 0.5s ease-out;
+
 }
 header.active{
     margin: 0 10px;
     background: #fff;
     box-shadow: 0 0 15px 0 var(--main-bg-clr);
-    border-radius: var(--static-border-radius);
+    border-radius: 25px;
     top: 1% !important;
     transition: 0.5s ease-out;
 }
@@ -93,6 +95,7 @@ header.active nav.links > li > a{
     color: var(--alt-tx-clr) !important;
     transition: 0.5s ease-out;
 }
+
 header .container{
     position: relative;
     height: 65px;
@@ -167,6 +170,9 @@ header .container nav.links{
         justify-content: center;
         align-items: center;
         width: 100%;
+    }
+    header.active  nav.links >li >a{
+        color: var(--main-tx-clr)!important;
     }
 }
 header .container nav.links > li > a{
@@ -311,20 +317,23 @@ main.home .container .description > p{
         font-size: 14px;
     }
 }
-main.home .container .description .exchange-now-section{
+main.home .container .description > .exchange-now-section{
     gap: 15px;
     height: 58px;
     padding: 10px 20px;
     margin-top: 65px;
     border: none;
     background: var(--main-bg-clr);
-    color: var(--main-tx-clr);
     font-size: 1.3rem;
     text-transform: uppercase;
     border-radius: var(--static-border-radius);
     cursor: pointer;
     transition:background 0.3s ease-out;
     
+}
+main.home .container .description > .exchange-now-section >a{
+    text-decoration: none;
+    color: var(--main-tx-clr);
 }
 main.home .container .description .exchange-now-section:hover{
     background: #3C4245;
@@ -369,10 +378,13 @@ main.home .container .description .exchange-now-section:hover{
 .liveRate .live-Rate-table{
     align-items: flex-start;
     list-style: none;
-    margin-top: 50px;
+    margin: 50px 0;
     gap: 50px;
     border-radius: 15px;
     color: var(--main-tx-clr);
+    max-height: 80vh;
+    overflow-y: scroll;
+    
 }
 .liveRate .currency-table{
     width: -webkit-fill-available;
@@ -393,7 +405,7 @@ main.home .container .description .exchange-now-section:hover{
 .live-Rate-table .currency-table tr td:hover{
     background-color: #4b4a4a;
 }
-.live-Rate-table .currency-table tr td .currencyLogo{
+.live-Rate-table .currency-table tr td .Logo{
     padding-left: 15px;
     margin: auto;
 }
@@ -580,4 +592,26 @@ footer.aboutUS .container .myphoto{
 footer.aboutUS .container .myphoto img{
     max-width: 100%;
 }
+.scrollToTop{
+    position: relative;
+}
+.scrollToTop .scrollToTopBTN{
+    position: fixed;
+    color: var(--main-tx-clr);
+    bottom: 5%;
+    left: 5%;
+    background-color: var(--main-bg-clr);
+    padding: 15px;
+    border-radius: var(--static-border-radius);
+    font-size: 2rem;
+    cursor: pointer;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+}
 
+.scrollToTop .scrollToTopBTN.active{
+    pointer-events: all;
+    opacity: 1;
+
+}
