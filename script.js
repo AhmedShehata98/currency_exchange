@@ -12,8 +12,9 @@ const togglemenu = document.querySelector('.toggleBTN'),
         selectCurrencyNameTo    = document.querySelector('#currencyListTo'),
         CurrencyAmountInput    = document.querySelector('#amountInput'),
         convertBTN     = document.querySelector('.convertBTN '),
-        displayingResult     = document.querySelector('.covertedValue ');
-
+        displayingResult     = document.querySelector('.covertedValue '),
+        displayingSelectedCurrency = document.querySelector('.selectedCurrencyRate '),
+        closeOverlay = document.querySelector('.closed ');
 
 // Start Events
 // 
@@ -40,20 +41,36 @@ scrollTotopBTN.addEventListener('click',function(){
     })
 })
 
+convertBTN.addEventListener('click',async function(){
+    let selectedValue = selectCurrencyNameFrom.value;
+    let amountInput   = CurrencyAmountInput.value;
 
+    let finalResult   = await CALCULATE_AND_CONVERT(selectedValue,amountInput);
+    let selectedCurrencyRate = await GET_API_DATA_BY_CURRENCY_NAME(selectedValue)
+    console.log(finalResult);
+    displayingResult.textContent = Number.parseFloat(finalResult).toFixed(2)
+    displayingSelectedCurrency.textContent = 'Currency Rate : '+' '+Number.parseFloat(selectedCurrencyRate).toFixed(2)+'  '+selectedValue
+})
+
+closeOverlay.addEventListener('click',function(){
+    closeOverlay.closest('div.overlayMSG').remove()
+})
+setTimeout(()=>{
+    closeOverlay.closest('div.overlayMSG').remove()
+},10000)
 // Create Functions
 // 
 
-async function GET_API_DATA(currencyName){
+async function GET_API_DATA_BY_CURRENCY_NAME(currencyName){
     // Get by currency name and Date
     const baseAPI = 'http://api.currencylayer.com/'
     const apiKEY  = atob('MWE4ZjZlYzllY2I5ZmE1MTgyMTBhZjI5MDkyM2RmYWU=');
-    const date = new Date();
-        
+    // const date = DATE_FORMAT(new Data());
+    //     console.log(date);
 
-    let response = await fetch(`${baseAPI}live?access_key=${apiKEY}&currencies=${currencyName}&&date=${date}&format=1`);
+    let response = await fetch(`${baseAPI}live?access_key=${apiKEY}&currencies=${currencyName}&format=1`);
     let Data = await response.json()
-    console.log(Data);
+    return Object.values(Data.quotes)
 }
 
 
@@ -74,26 +91,10 @@ async function GET_API_DATA_LIVE_RATE(){
 
     let response = await fetch(`${baseAPI}live?access_key=${apiKEY}&format=1`);
     let Data = await response.json()
+    // return Object.values(Data.quotes)
     return Object.values(Data.quotes)
-    
+
 }
-
-function DATE_FORMAT(date){
-    let day,month,year;
-        day = date.getDay();
-        month = date.getMonth();
-        year = date.getFullYear();
-
-        if (day < 10) {
-            day = '0' + day
-        }
-        if (month < 10) {
-            month = '0' + month
-        }
-        return `${day}-${month}-${year}`
-}
-
-
 
 async function INNER_LIVE_RATE(data){
 
@@ -126,9 +127,13 @@ async function INNER_LIVE_RATE(data){
     }
 
 }
+async function CALCULATE_AND_CONVERT(currencyName,inputAmount){
+    let currencyRateFrom_API = await GET_API_DATA_BY_CURRENCY_NAME(currencyName)
+   return currencyRateFrom_API * inputAmount
+
+}
 // calling functions
 // 
-DATE_FORMAT(new Date())
 GET_API_DATA_LIVE_RATE()
 INNER_LIVE_RATE()
 // http://api.currencylayer.com/live?access_key=1a8f6ec9ecb9fa518210af290923dfae&currencies=EGP&format=1

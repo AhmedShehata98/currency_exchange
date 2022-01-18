@@ -376,6 +376,7 @@ main.home .container .description .exchange-now-section:hover{
     object-fit: cover;
 }
 .liveRate .live-Rate-table{
+    
     align-items: flex-start;
     list-style: none;
     margin: 50px 0;
@@ -385,6 +386,18 @@ main.home .container .description .exchange-now-section:hover{
     max-height: 80vh;
     overflow-y: scroll;
     
+}
+.liveRate .live-Rate-table::-webkit-scrollbar{
+    -webkit-appearance: none;
+    width: 15px;
+    background-color: #161853;
+    overflow: hidden;
+    border-radius: var(--static-border-radius);
+}
+.liveRate .live-Rate-table::-webkit-scrollbar-thumb{
+    height: 10px;
+    background-color: var(--main-bg-clr);
+    border-radius: var(--static-border-radius);
 }
 .liveRate .currency-table{
     width: -webkit-fill-available;
@@ -531,12 +544,20 @@ main.home .container .description .exchange-now-section:hover{
     box-shadow: 0 0 8px var(--main-bg-clr);
     border-radius: 10px;
 }
-.calculator-panel .to-currency >span.showResult .covertedValue{
-    font-size: 1.1rem;
+.calculator-panel .to-currency >span.showResult .covertedValueLbl{
     color: var(--alt-bg-clr);
     font-weight: bold;
+}
+.calculator-panel .to-currency >span.showResult .covertedValue{
+    font-size: 1.1rem;
+    color: var(--main-bg-clr);
+    font-weight: bold;
     align-self: center;
-
+    
+}
+.calculator-panel .to-currency >span.showResult .selectedCurrencyRate{
+    color: var(--main-tx-clr);
+    font-weight: normal;
 }
 footer.aboutUS{
     min-height: 40vh;
@@ -614,4 +635,56 @@ footer.aboutUS .container .myphoto img{
     pointer-events: all;
     opacity: 1;
 
+}
+.overlayMSG{
+    position: absolute;
+    z-index: 101;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #252525;
+}
+.overlayMSG .msgLogo{
+    font-size: 3rem;
+    color: #FFC600;
+    background: #E60965;
+    padding: 15px;
+}
+.overlayMSG .mainMSG {
+    padding: 15px;
+    align-items: flex-start;
+    gap: 50px;
+}
+.overlayMSG .mainMSG .closed{
+    font-size: 2.5rem;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px;
+    background-color: #1A374D;
+}
+.overlayMSG .mainMSG > h1{
+    max-width: 700px;
+    font-size: 1.2rem;
+    color: var(--main-tx-clr);
+}
+
+.overlayMSG .mainMSG > h1 >span{
+    font-size: 1.5;
+    font-weight: bold;
+    color: var(--main-bg-clr);
+}
+
+@media (max-width:768px) {
+    .overlayMSG .mainMSG .closed{
+        font-size: 1.8rem;
+    }
+    .overlayMSG .mainMSG > h1{
+        font-size: 0.9rem;
+        max-width: 350px;
+    }
+    .overlayMSG .mainMSG > h1 >span{
+        font-size: 1.0;
+    }
+    
 }
